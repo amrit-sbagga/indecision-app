@@ -1,14 +1,19 @@
 "use strict";
 
-var nameVar = "Amrit";
-var nameVar = "Mike";
-console.log('nameVar', nameVar);
+var square = function square(x) {
+    return x * x;
+};
 
-var nameLet = "Jen";
-//let nameLet = 'Julie'
-console.log('nameLet = ', nameLet);
+var squareArrow = function squareArrow(x) {
+    return x * x;
+};
 
-var nameConst = "Frank";
-console.log('nameConst = ', nameConst);
-//const nameConst ="Gunther";
-//console.log('nameConst = ', nameConst);
+console.log(square(8));
+
+console.log(squareArrow(5));
+
+var getFirstName = function getFirstName(fullname) {
+    return fullname.split(" ")[0];
+};
+
+console.log(getFirstName("Amrit Singh"));
