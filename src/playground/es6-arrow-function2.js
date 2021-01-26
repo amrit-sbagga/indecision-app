@@ -36,3 +36,15 @@ const user = {
 
 console.log(user.printPlacesLived());
 
+const multiplier = {
+    // numbers - array of number
+    numbers : [1, 2, 3],
+    // multiplyBy - single number
+    multiplyBy : 2,
+    // multiply - return a new array where numbers have been multiplied 
+    multiply() {
+        return this.numbers.map(num => num * this.multiplyBy)
+    }
+}
+
+console.log(multiplier.multiply());
