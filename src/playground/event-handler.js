@@ -23,35 +23,42 @@ function getLocation(location){
 
 let count = 0;
 const someId = "myId";
+
 const addOne = () => {
   count +=1;
   console.log("count = ", count);
+  renderCounterApp();
 }
 
 const minusOne = () => {
     count -= 1;
     console.log("count = ", count);
+    renderCounterApp();
 }
 
 const reset = () => {
     count = 0;
     console.log("count = ", count);
+    renderCounterApp();
 }
 
-var templateTwo = (
-    <div>
-       <h1>Count : { count }</h1>
-       {/* <button id="my-id" className="button">+1</button> */}
-       <button id={someId} className="button" onClick={addOne}>+1</button>
-       <button id={someId} className="button" onClick={minusOne}>-1</button>
-       <button id={someId} className="button" onClick={reset}>Reset</button>
-    
-    </div>
-);
 
-
-console.log(templateTwo);
+//console.log(templateTwo);
 
 var appRoot = document.getElementById("app");
 
-ReactDOM.render(templateTwo, appRoot)
+const renderCounterApp = () => {
+    var templateTwo = (
+        <div>
+           <h1>Count : { count }</h1>
+           {/* <button id="my-id" className="button">+1</button> */}
+           <button id={someId} className="button" onClick={addOne}>+1</button>
+           <button id={someId} className="button" onClick={minusOne}>-1</button>
+           <button id={someId} className="button" onClick={reset}>Reset</button>
+        
+        </div>
+    );
+    ReactDOM.render(templateTwo, appRoot);
+}
+
+renderCounterApp();
