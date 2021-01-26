@@ -1,56 +1,84 @@
 "use strict";
 
-//arguments object - no longer bound with arrow functions
-console.log("arrow functions usage...!!");
+console.log("app js is running");
 
-//const add = function (a, b){
-var add = function add(a, b) {
-    // console.log(arguments);
-    return a + b;
-};
+var template = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h2",
+        null,
+        "Indecision app"
+    ),
+    React.createElement(
+        "p",
+        null,
+        "This is JSX from app.js!"
+    )
+);
 
-console.log(add(4, 5, 1001));
-
-//this keyword - no longer bound
 var user = {
-    "name": "Amrit",
-    "cities": ["Sarangarh", "Raipur", "Bhilai", "Bangalore"],
-    printPlacesLived: function printPlacesLived() {
-        //const that = this;
-        //console.log(this.name);
-        //console.log(this.cities);
+    name: "Amrit",
+    age: 31,
+    location: "New York"
+    // var name = "Amrit";
+    // var age = 31;
+    // var userLocation = "New York"
 
-        // this.cities.forEach(function (city){
-        //     console.log(that.name + "has lived in city = ", city);
-        // })
+};function getLocation(location) {
+    if (location) return React.createElement(
+        "p",
+        null,
+        "Location :- ",
+        location
+    );
+}
 
-        var cityMessages = this.cities.map(function (city) {
-            return city + "!!";
-        });
-
-        // this.cities.forEach((city) => {
-        //     console.log(this.name + " has lived in city = ", city);
-        // })
-
-        return cityMessages;
-    }
+var count = 0;
+var someId = "myId";
+var addOne = function addOne() {
+    count += 1;
+    console.log("count = ", count);
 };
 
-console.log(user.printPlacesLived());
-
-var multiplier = {
-    // numbers - array of number
-    numbers: [1, 2, 3],
-    // multiplyBy - single number
-    multiplyBy: 2,
-    // multiply - return a new array where numbers have been multiplied 
-    multiply: function multiply() {
-        var _this = this;
-
-        return this.numbers.map(function (num) {
-            return num * _this.multiplyBy;
-        });
-    }
+var minusOne = function minusOne() {
+    count -= 1;
+    console.log("count = ", count);
 };
 
-console.log(multiplier.multiply());
+var reset = function reset() {
+    count = 0;
+    console.log("count = ", count);
+};
+
+var templateTwo = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Count : ",
+        count
+    ),
+    React.createElement(
+        "button",
+        { id: someId, className: "button", onClick: addOne },
+        "+1"
+    ),
+    React.createElement(
+        "button",
+        { id: someId, className: "button", onClick: minusOne },
+        "-1"
+    ),
+    React.createElement(
+        "button",
+        { id: someId, className: "button", onClick: reset },
+        "Reset"
+    )
+);
+
+console.log(templateTwo);
+
+var appRoot = document.getElementById("app");
+
+ReactDOM.render(templateTwo, appRoot);

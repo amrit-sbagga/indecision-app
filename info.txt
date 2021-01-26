@@ -21,6 +21,8 @@ var template = <p>This is JSX from app.js!</p>
 
 //babel command to execute in cmd = babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
 
-babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --presets=env,react --watch
+> babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --presets=env,react --watch
 
-babel src/playground/es6-arrow-function.js --out-file=public/scripts/app.js --presets=env,react --watch
+> babel src/playground/es6-arrow-function.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+> babel src/playground/event-handler.js --out-file=public/scripts/app.js --presets=env,react --watch
