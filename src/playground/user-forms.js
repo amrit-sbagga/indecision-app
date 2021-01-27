@@ -26,6 +26,8 @@ const onRemoveAll = () => {
 
 var appRoot = document.getElementById("app");
 
+const numbers = [55, 88, 100];
+
 const renderAndShowFormData = () => {
     const template = (
         <div>
@@ -33,15 +35,26 @@ const renderAndShowFormData = () => {
             <p>This is JSX from app.js!</p>
             <p>{app.options.length > 0 ? "Here are your options" : "No Option"}</p>
             <p>{app.options.length}</p>
+            
             <button onClick={onRemoveAll}>Remove All</button>
+            {/* {
+                //boolean, undefined, null will not display
+                    // [99, 98, 97, "Amrit", null, true, undefined]
+                    [<p key="1">a</p>, <p key="2">b</p>, <p key="3">c</p>]
+            } */}
+            
+            {/* {
+                numbers.map((item) => {
+                    console.log(item);
+                    return (<p key={item}>Number : {item}</p>)
+                })
+            } */}
             <ol>
-                {/* <li>Item one</li>
-                <li>Item two</li> */}
-                {app.options.forEach((itemElem) =>{
-                    console.log(itemElem);
-                    <li>{itemElem}</li>
-                })}
+                {                
+                    app.options.map((itemElem) => <li key={itemElem}>{itemElem}</li>) 
+                }
             </ol>
+            
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>
                 <button type="submit">Add Option</button>

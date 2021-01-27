@@ -28,6 +28,8 @@ var onRemoveAll = function onRemoveAll() {
 
 var appRoot = document.getElementById("app");
 
+var numbers = [55, 88, 100];
+
 var renderAndShowFormData = function renderAndShowFormData() {
     var template = React.createElement(
         "div",
@@ -60,11 +62,10 @@ var renderAndShowFormData = function renderAndShowFormData() {
         React.createElement(
             "ol",
             null,
-            app.options.forEach(function (itemElem) {
-                console.log(itemElem);
-                React.createElement(
+            app.options.map(function (itemElem) {
+                return React.createElement(
                     "li",
-                    null,
+                    { key: itemElem },
                     itemElem
                 );
             })
