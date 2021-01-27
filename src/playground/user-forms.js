@@ -28,6 +28,13 @@ var appRoot = document.getElementById("app");
 
 const numbers = [55, 88, 100];
 
+const onMakeDecision = () => {
+    const randomNum = Math.floor(Math.random() * app.options.length);
+    const option = app.options[randomNum];
+    alert(option)
+    //console.log(randomNum);
+}
+
 const renderAndShowFormData = () => {
     const template = (
         <div>
@@ -35,7 +42,7 @@ const renderAndShowFormData = () => {
             <p>This is JSX from app.js!</p>
             <p>{app.options.length > 0 ? "Here are your options" : "No Option"}</p>
             <p>{app.options.length}</p>
-            
+            <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do</button>
             <button onClick={onRemoveAll}>Remove All</button>
             {/* {
                 //boolean, undefined, null will not display
