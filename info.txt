@@ -26,3 +26,7 @@ var template = <p>This is JSX from app.js!</p>
 > babel src/playground/es6-arrow-function.js --out-file=public/scripts/app.js --presets=env,react --watch
 
 > babel src/playground/event-handler.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+> babel src/playground/user-forms.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+> babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch
