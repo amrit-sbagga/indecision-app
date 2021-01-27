@@ -2,90 +2,86 @@
 
 console.log("app js is running");
 
-var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h2",
-        null,
-        "Indecision app"
-    ),
-    React.createElement(
-        "p",
-        null,
-        "This is JSX from app.js!"
-    )
-);
-
-var user = {
-    name: "Amrit",
-    age: 31,
-    location: "New York"
-    // var name = "Amrit";
-    // var age = 31;
-    // var userLocation = "New York"
-
-};function getLocation(location) {
-    if (location) return React.createElement(
-        "p",
-        null,
-        "Location :- ",
-        location
-    );
-}
-
-var count = 0;
-var someId = "myId";
-
-var addOne = function addOne() {
-    count += 1;
-    console.log("count = ", count);
-    renderCounterApp();
+var app = {
+    title: "Indecision App",
+    options: ["One", "Two"]
 };
 
-var minusOne = function minusOne() {
-    count -= 1;
-    console.log("count = ", count);
-    renderCounterApp();
+var onFormSubmit = function onFormSubmit(event) {
+    event.preventDefault();
+
+    //console.log("form submitted!!")
+    var option = event.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        event.target.elements.option.value = "";
+        renderAndShowFormData();
+    }
 };
 
-var reset = function reset() {
-    count = 0;
-    console.log("count = ", count);
-    renderCounterApp();
+//create "Remove All" button list
+var onRemoveAll = function onRemoveAll() {
+    app.options = [];
+    renderAndShowFormData();
 };
-
-//console.log(templateTwo);
 
 var appRoot = document.getElementById("app");
 
-var renderCounterApp = function renderCounterApp() {
-    var templateTwo = React.createElement(
+var renderAndShowFormData = function renderAndShowFormData() {
+    var template = React.createElement(
         "div",
         null,
         React.createElement(
-            "h1",
+            "h2",
             null,
-            "Count : ",
-            count
+            "Indecision app"
+        ),
+        React.createElement(
+            "p",
+            null,
+            "This is JSX from app.js!"
+        ),
+        React.createElement(
+            "p",
+            null,
+            app.options.length > 0 ? "Here are your options" : "No Option"
+        ),
+        React.createElement(
+            "p",
+            null,
+            app.options.length
         ),
         React.createElement(
             "button",
-            { id: someId, className: "button", onClick: addOne },
-            "+1"
+            { onClick: onRemoveAll },
+            "Remove All"
         ),
         React.createElement(
-            "button",
-            { id: someId, className: "button", onClick: minusOne },
-            "-1"
+            "ol",
+            null,
+            app.options.forEach(function (itemElem) {
+                console.log(itemElem);
+                React.createElement(
+                    "li",
+                    null,
+                    itemElem
+                );
+            })
         ),
         React.createElement(
-            "button",
-            { id: someId, className: "button", onClick: reset },
-            "Reset"
+            "form",
+            { onSubmit: onFormSubmit },
+            React.createElement("input", { type: "text", name: "option" }),
+            React.createElement(
+                "button",
+                { type: "submit" },
+                "Add Option"
+            )
         )
     );
-    ReactDOM.render(templateTwo, appRoot);
+
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+renderAndShowFormData();
