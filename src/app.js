@@ -1,34 +1,57 @@
-console.log("app js is running");
-
-var template = (
-    <div>
-        <h2>Indecision app</h2>
-        <p>This is JSX from app.js!</p>
-    </div>
-);
-
-var user = {
-    name : "Amrit",
-    age : 31,
-    location : "New York"
-}
-// var name = "Amrit";
-// var age = 31;
-// var userLocation = "New York"
-
-function getLocation(location){
-    if (location)
-        return <p>Location :- {location}</p>
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>Indecision Application</h1>
+                <h2>React development test</h2>
+            </div>
+        )
+    }
 }
 
-var templateTwo = (
+class Action extends React.Component {
+    render(){
+        return (
+            <div>
+                <button>What should I do</button>
+            </div>
+        )
+    }
+}
+
+//options -> component here
+
+class Options extends React.Component{
+    render(){
+        return (
+            <div>
+                <ol>
+                    <li>Item one</li>
+                    <li>Item two</li>
+                </ol>
+            </div>
+        )
+    }
+}
+
+class AddOption extends React.Component{
+    render(){
+        return (
+            <div>
+                Add option component here
+            </div>
+        )
+    }
+}
+
+const jsx = (
     <div>
-        <h2>{user.name? user.name.toUpperCase():'Anonymous'}</h2>
-        { (user.age && user.age >=18) && <p>Age : { user.age}</p>}
-        { getLocation(user.location) }
+        <h1>Title</h1>
+        <Header />
+        <Action />
+        <Options />
+        <AddOption />
     </div>
-);
+)
 
-var appRoot = document.getElementById("app");
-
-ReactDOM.render(templateTwo, appRoot)
+ReactDOM.render(jsx, document.getElementById("app"))
