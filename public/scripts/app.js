@@ -20,12 +20,15 @@ var IndecisionApp = function (_React$Component) {
     _createClass(IndecisionApp, [{
         key: "render",
         value: function render() {
+            var title = "Indecision Application";
+            var subtitle = "React development test";
+            var options = ["Item one", "Item two", "Item three"];
             return React.createElement(
                 "div",
                 null,
-                React.createElement(Header, null),
+                React.createElement(Header, { title: title, subtitle: subtitle }),
                 React.createElement(Action, null),
-                React.createElement(Options, null),
+                React.createElement(Options, { options: options }),
                 React.createElement(AddOption, null)
             );
         }
@@ -46,18 +49,22 @@ var Header = function (_React$Component2) {
     _createClass(Header, [{
         key: "render",
         value: function render() {
+            var title = this.props.title;
+            console.log(title);
+
+            var subtitle = this.props.subtitle;
             return React.createElement(
                 "div",
                 null,
                 React.createElement(
                     "h1",
                     null,
-                    "Indecision Application"
+                    title
                 ),
                 React.createElement(
                     "h2",
                     null,
-                    "React development test"
+                    subtitle
                 )
             );
         }
@@ -107,10 +114,15 @@ var Options = function (_React$Component4) {
     _createClass(Options, [{
         key: "render",
         value: function render() {
+            var options = this.props.options;
             return React.createElement(
                 "div",
                 null,
-                React.createElement(Option, null)
+                "options length = ",
+                options.length,
+                options.map(function (item) {
+                    return React.createElement(Option, { key: item, item: item });
+                })
             );
         }
     }]);
@@ -153,10 +165,11 @@ var Option = function (_React$Component6) {
     _createClass(Option, [{
         key: "render",
         value: function render() {
+            var item = this.props.item;
             return React.createElement(
                 "div",
                 null,
-                "option component here"
+                item
             );
         }
     }]);
