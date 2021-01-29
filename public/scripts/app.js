@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -19,6 +19,10 @@ var Counter = function (_React$Component) {
         _this.handleAddOne = _this.handleAddOne.bind(_this);
         _this.handleMinusOne = _this.handleMinusOne.bind(_this);
         _this.handleReset = _this.handleReset.bind(_this);
+
+        _this.state = {
+            count: 0
+        };
         return _this;
     }
 
@@ -27,45 +31,66 @@ var Counter = function (_React$Component) {
     // wire up onclick and bind in the constructor
 
     _createClass(Counter, [{
-        key: 'handleAddOne',
+        key: "handleAddOne",
         value: function handleAddOne() {
-            console.log('handleAddOne');
+            // console.log('handleAddOne');
+            // this.state.count = this.state.count + 1;
+            // console.log(this.state.count);
+            this.setState(function (prevState) {
+                return {
+                    count: prevState.count + 1
+                };
+            });
         }
     }, {
-        key: 'handleMinusOne',
+        key: "handleMinusOne",
         value: function handleMinusOne() {
-            console.log('handleMinusOne');
+            //console.log('handleMinusOne');
+
+            this.setState(function (prevState) {
+                console.log(prevState.count);
+                return {
+                    count: prevState.count - 1
+                };
+            });
         }
     }, {
-        key: 'handleReset',
+        key: "handleReset",
         value: function handleReset() {
-            console.log('handleReset');
+            // console.log('handleReset');
+
+            this.setState(function (prevState) {
+                return {
+                    count: 0
+                };
+            });
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
+                "div",
                 null,
                 React.createElement(
-                    'h1',
+                    "h1",
                     null,
-                    'Count : 123'
+                    "Count : ",
+                    this.state.count
                 ),
                 React.createElement(
-                    'button',
+                    "button",
                     { onClick: this.handleAddOne },
-                    '+1'
+                    "+1"
                 ),
                 React.createElement(
-                    'button',
+                    "button",
                     { onClick: this.handleMinusOne },
-                    '-1'
+                    "-1"
                 ),
                 React.createElement(
-                    'button',
+                    "button",
                     { onClick: this.handleReset },
-                    'reset'
+                    "reset"
                 )
             );
         }
