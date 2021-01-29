@@ -48,7 +48,7 @@ var Counter = function (_React$Component) {
             //console.log('handleMinusOne');
 
             this.setState(function (prevState) {
-                console.log(prevState.count);
+                //console.log(prevState.count);
                 return {
                     count: prevState.count - 1
                 };
@@ -64,6 +64,14 @@ var Counter = function (_React$Component) {
                     count: 0
                 };
             });
+
+            //asynchronous - wrong result for count
+            // this.setState({
+            //     count : 0
+            // })
+            // this.setState({
+            //     count : this.state.count + 1
+            // })
         }
     }, {
         key: "render",
