@@ -31,7 +31,7 @@ var IndecisionApp = function (_React$Component) {
         _this.handlePick = _this.handlePick.bind(_this);
         _this.handleAddOption = _this.handleAddOption.bind(_this);
         _this.state = {
-            options: ["Item one", "Item two", "Item three"]
+            options: props.options
         };
         return _this;
     }
@@ -60,7 +60,7 @@ var IndecisionApp = function (_React$Component) {
     }, {
         key: "handleAddOption",
         value: function handleAddOption(option) {
-            if (option) {
+            if (!option) {
                 return 'Enter valid value to add item';
             } else if (this.state.options.indexOf(option) > -1) {
                 return 'This item already exists';
@@ -76,13 +76,13 @@ var IndecisionApp = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            var title = "Indecision Application";
+            //const title = "Indecision Application";
             var subtitle = "React development test";
             // const options = ["Item one", "Item two", "Item three"]
             return React.createElement(
                 "div",
                 null,
-                React.createElement(Header, { title: title, subtitle: subtitle }),
+                React.createElement(Header, { subtitle: subtitle }),
                 React.createElement(Action, {
                     hasOptions: this.state.options.length > 0,
                     handlePick: this.handlePick
@@ -100,6 +100,10 @@ var IndecisionApp = function (_React$Component) {
     return IndecisionApp;
 }(React.Component);
 
+IndecisionApp.defaultProps = {
+    options: ["Item one", "Item two", "Item three"]
+};
+
 var Header = function Header(props) {
     var title = props.title;
     console.log(title);
@@ -113,12 +117,16 @@ var Header = function Header(props) {
             null,
             title
         ),
-        React.createElement(
+        subtitle && React.createElement(
             "h2",
             null,
             subtitle
         )
     );
+};
+
+Header.defaultProps = {
+    title: 'Indecision Application'
 };
 
 var HeaderOld = function (_React$Component2) {

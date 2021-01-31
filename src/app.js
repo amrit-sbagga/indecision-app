@@ -17,7 +17,7 @@ class IndecisionApp extends React.Component {
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
         this.state = {
-            options : ["Item one", "Item two", "Item three"]
+            options : props.options
         }
     }
 
@@ -41,7 +41,7 @@ class IndecisionApp extends React.Component {
     }
 
     handleAddOption(option){
-        if(option){
+        if(!option){
             return 'Enter valid value to add item';
         } else if(this.state.options.indexOf(option) > -1){
             return 'This item already exists';
@@ -56,12 +56,12 @@ class IndecisionApp extends React.Component {
     }
    
     render() {
-        const title = "Indecision Application";
+        //const title = "Indecision Application";
         const subtitle = "React development test";
        // const options = ["Item one", "Item two", "Item three"]
         return (
             <div>
-                <Header title={title} subtitle={subtitle}/>
+                <Header subtitle={subtitle}/>
                 <Action 
                     hasOptions = { this.state.options.length > 0 }
                     handlePick = { this.handlePick }
@@ -77,6 +77,10 @@ class IndecisionApp extends React.Component {
     }
 }
 
+IndecisionApp.defaultProps = {
+    options : ["Item one", "Item two", "Item three"]
+}
+
 const Header = (props) => {
     let title = props.title
     console.log(title);
@@ -85,9 +89,13 @@ const Header = (props) => {
     return (
         <div>
             <h1>{title}</h1>
-            <h2>{subtitle}</h2>
+            {subtitle && <h2>{subtitle}</h2>}
         </div>
     )
+};
+
+Header.defaultProps = {
+    title : 'Indecision Application'
 }
 
 class HeaderOld extends React.Component {
