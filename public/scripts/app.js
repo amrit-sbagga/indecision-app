@@ -37,7 +37,50 @@ var IndecisionApp = function (_React$Component) {
         return _this;
     }
 
+    //Stateless functional components do not have lifecycle methods
+    //Lifecycle components
+    // 1 - Mounting
+    //        - constructor()
+    //        - componentWillMount()
+    //        - render()
+    //        - componentDidMount() 
+
+    // 2 - Updating
+    //        - componentWillReceiveProps()
+    //        - shouldComponentUpdate()
+    //        - componentWillUpdate()
+    //        - render()
+    //        - componentDidUpdate()
+
+    // 3 - Unmounting
+    //        - componentWillUnmount()
+
+    //called once when component is mounted
+    //not associated with stateless component
+
+
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('componentDidMount!');
+        }
+
+        //called after state or prop value change
+
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            console.log('componentDidUpdate!');
+        }
+
+        //fires when component goes away
+
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount');
+        }
+    }, {
         key: 'handleDeleteOption',
         value: function handleDeleteOption(optionToRemove) {
             console.log('handleDeleteOption', optionToRemove);

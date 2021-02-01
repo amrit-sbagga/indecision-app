@@ -22,6 +22,40 @@ class IndecisionApp extends React.Component {
         }
     }
 
+    //Stateless functional components do not have lifecycle methods
+    //Lifecycle components
+    // 1 - Mounting
+    //        - constructor()
+    //        - componentWillMount()
+    //        - render()
+    //        - componentDidMount() 
+
+    // 2 - Updating
+    //        - componentWillReceiveProps()
+    //        - shouldComponentUpdate()
+    //        - componentWillUpdate()
+    //        - render()
+    //        - componentDidUpdate()
+
+    // 3 - Unmounting
+    //        - componentWillUnmount()
+
+    //called once when component is mounted
+    //not associated with stateless component
+    componentDidMount(){
+        console.log('componentDidMount!');
+    }
+
+    //called after state or prop value change
+    componentDidUpdate(prevProps, prevState){
+        console.log('componentDidUpdate!');
+    }
+
+    //fires when component goes away
+    componentWillUnmount(){
+        console.log('componentWillUnmount');
+    }
+
     handleDeleteOption(optionToRemove){
         console.log('handleDeleteOption', optionToRemove);
         this.setState((prevState) => ({
