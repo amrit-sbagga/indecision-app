@@ -62,7 +62,22 @@ var IndecisionApp = function (_React$Component) {
     _createClass(IndecisionApp, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            console.log('componentDidMount!');
+            try {
+                console.log('componentDidMount!');
+                console.log("fetching data");
+                var json = localStorage.getItem('options');
+                var options = JSON.parse(json);
+
+                if (options) {
+                    this.setState(function () {
+                        return {
+                            options: options
+                        };
+                    });
+                }
+            } catch (e) {
+                //do nothing
+            }
         }
 
         //called after state or prop value change
@@ -71,6 +86,11 @@ var IndecisionApp = function (_React$Component) {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
             console.log('componentDidUpdate!');
+            if (prevState.options.length !== this.state.options.length) {
+                var json = JSON.stringify(this.state.options);
+                localStorage.setItem('options', json);
+                console.log('saving data..!!');
+            }
         }
 
         //fires when component goes away
@@ -177,7 +197,8 @@ var IndecisionApp = function (_React$Component) {
 }(React.Component);
 
 IndecisionApp.defaultProps = {
-    options: ["Item one", "Item two", "Item three"]
+    options: []
+    // "Item one", "Item two", "Item three"]
 };
 
 var Header = function Header(props) {
@@ -291,7 +312,16 @@ var ActionOld = function (_React$Component3) {
 //options -> component here
 
 var Options = function Options(props) {
+    //console.log(props);
     var options = props.options;
+    // console.log(options.length);
+    {
+        options.length === 0 && React.createElement(
+            'p',
+            null,
+            'Please add an option to get started'
+        );
+    }
     return React.createElement(
         'div',
         null,
@@ -381,6 +411,10 @@ var AddOption = function (_React$Component5) {
                     error: error
                 };
             });
+
+            if (!error) {
+                event.target.elements.option.value = "";
+            }
 
             // if(option){
             //   // alert('add option', option) 

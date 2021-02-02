@@ -43,12 +43,30 @@ class IndecisionApp extends React.Component {
     //called once when component is mounted
     //not associated with stateless component
     componentDidMount(){
-        console.log('componentDidMount!');
+        try{
+            console.log('componentDidMount!');
+            console.log("fetching data");
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+    
+            if(options){
+                this.setState(() => ({
+                    options
+                }))
+            }
+        }catch(e){
+            //do nothing
+        }     
     }
 
     //called after state or prop value change
     componentDidUpdate(prevProps, prevState){
         console.log('componentDidUpdate!');
+        if(prevState.options.length !== this.state.options.length){
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+            console.log('saving data..!!');
+        }
     }
 
     //fires when component goes away
@@ -136,7 +154,8 @@ class IndecisionApp extends React.Component {
 }
 
 IndecisionApp.defaultProps = {
-    options : ["Item one", "Item two", "Item three"]
+    options : [] 
+    // "Item one", "Item two", "Item three"]
 }
 
 const Header = (props) => {
@@ -205,7 +224,10 @@ class ActionOld extends React.Component {
 //options -> component here
 
 const Options = (props) => {
+    //console.log(props);
     const options = props.options;
+   // console.log(options.length);
+    {options.length === 0 && <p>Please add an option to get started</p>}
     return (
         <div>        
             <button onClick={props.handleDeleteOptions}>Remove All</button>
@@ -281,6 +303,9 @@ class AddOption extends React.Component {
             error
         }))
 
+        if(!error){
+            event.target.elements.option.value = "";
+        }
 
         // if(option){
         //   // alert('add option', option) 
