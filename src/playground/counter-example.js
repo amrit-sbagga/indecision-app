@@ -7,8 +7,27 @@ class Counter extends React.Component{
         this.handleReset = this.handleReset.bind(this);
 
         this.state = {
-            count : props.count
+            count : 0//props.count
         }
+    }
+
+    componentDidMount(){
+        let count = 0;
+        if(localStorage.getItem('count')){
+            count = parseInt(localStorage.getItem('count'), 10)
+
+            this.setState(() => ({
+                count
+            }))
+        }
+       
+    }
+
+    componentDidUpdate(prevProps, prevState){
+       console.log('componentDidUpdate'); 
+       if(prevState.count !== this.state.count){
+        localStorage.setItem('count', this.state.count);
+       }
     }
 
     // create 3 methods for +1, -1 and reset
@@ -67,8 +86,8 @@ class Counter extends React.Component{
     }
 }
 
-Counter.defaultProps = {
-    count : 0
-}
+// Counter.defaultProps = {
+//     count : 0
+// }
 
 ReactDOM.render(<Counter count={10}/>, document.getElementById("app"))
