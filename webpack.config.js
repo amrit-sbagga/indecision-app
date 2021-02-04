@@ -9,5 +9,16 @@ module.exports = {
         path: path.join(__dirname, 'public'),
         filename : 'bundle.js'
     },
-    mode:'production'
-}
+    mode:'production',
+    module: {
+        rules : [
+            {
+                loader: 'babel-loader',
+                test: /\.js$/,
+                exclude: /node_modules/
+            }
+        ]
+    }
+};
+
+//loader

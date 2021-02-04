@@ -8,7 +8,8 @@ import canVote, { isSenior } from './person.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const template = React.createElement('p', {}, 'testing123')
+const template = <p><b>This is jsx from webpack</b></p>
+//React.createElement('p', {}, 'testing123')
 //<p>test123</p>
 ReactDOM.render(template, document.getElementById('app'))
 
