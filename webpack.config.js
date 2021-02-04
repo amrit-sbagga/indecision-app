@@ -9,7 +9,6 @@ module.exports = {
         path: path.join(__dirname, 'public'),
         filename : 'bundle.js'
     },
-    mode:'production',
     module: {
         rules : [
             {
@@ -18,7 +17,10 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
-    }
+    },
+    devtool : 'cheap-module-source-map',
+    mode:'development'
 };
 
+//check webpack docs available at https://webpack.js.org/configuration 
 //loader
