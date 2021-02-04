@@ -6,6 +6,8 @@ const add = (a, b) => a + b;
 
 export const subtract = (a, b) => a-b;
 
+const multiply = (a, b) => a * b;
+
 export const isAdult = (age) => age >= 18
 //{
 //     if(age > 18) return true;
@@ -18,8 +20,11 @@ export const canDrink = (age) => age >= 21
 //     return false;
 // }
 
-export {square, add };
+
+//export default multiply;
+
+export {square, add, multiply as default };
 
 //export - 2 types
-//default export
+//default export -> 0 or 1 only
 //named export
