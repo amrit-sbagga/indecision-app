@@ -5,7 +5,12 @@ import multiplyMe, { square as sq, add, subtract, isAdult, canDrink} from './uti
 
 import canVote, { isSenior } from './person.js';
 
+import React from 'react';
+import ReactDOM from 'react-dom';
 
+const template = React.createElement('p', {}, 'testing123')
+//<p>test123</p>
+ReactDOM.render(template, document.getElementById('app'))
 
 console.log('app js is running!!!');
 
