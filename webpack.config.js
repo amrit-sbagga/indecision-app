@@ -19,8 +19,12 @@ module.exports = {
         ]
     },
     devtool : 'cheap-module-source-map',
-    mode:'development'
+    mode:'development',
+    devServer : {
+        contentBase : path.join(__dirname, 'public') 
+    }
 };
 
 //check webpack docs available at https://webpack.js.org/configuration 
 //loader
+//webpack.js.org/configuration/dev-server
