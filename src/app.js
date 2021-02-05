@@ -3,7 +3,24 @@ import ReactDOM from 'react-dom';
 
 import IndecisionApp from './components/IndecisionApp';
 
-ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
+const Layout = (props) => {
+    return (
+        <div>
+            <p>header</p>
+            {props.children}
+            <p>footer</p>
+        </div>
+    )
+}
+
+ReactDOM.render(
+    (<Layout>
+        <div>
+            <p>This is inline</p>
+        </div>
+    </Layout>),
+    document.getElementById("app"));
+//ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
 
 
 //stateless function component
