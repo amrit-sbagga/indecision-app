@@ -6,17 +6,77 @@ import Options from './Options';
 
 export default class IndecisionApp extends React.Component {
 
-    constructor(props){
-        super(props);
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-        this.handlePick = this.handlePick.bind(this);
-        this.handleAddOption = this.handleAddOption.bind(this);
-        this.handleDeleteOption = this.handleDeleteOption.bind(this);
-        this.state = {
-            options : [] //props.options
-        }
+    state = {
+        options : [] //props.options
     }
 
+    // constructor(props){
+    //     super(props);
+    //     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    //     this.handlePick = this.handlePick.bind(this);
+    //     this.handleAddOption = this.handleAddOption.bind(this);
+    //     this.handleDeleteOption = this.handleDeleteOption.bind(this);
+    //     this.state = {
+    //         options : [] //props.options
+    //     }
+    // }
+    
+    handleDeleteOption = (optionToRemove) => {
+        console.log('handleDeleteOption', optionToRemove);
+        this.setState((prevState) => ({
+            options : prevState.options.filter((option) => {
+                return optionToRemove !== option;
+            })
+        }))
+    }
+
+    handleDeleteOptions = () => {
+        // this.setState(() => {
+        //     return {
+        //         options : []
+        //     }
+        // })
+
+        this.setState(() => ({
+            options : []
+        }))
+    }
+
+    handlePick = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        //alert(option)
+        // this.setState(() => {
+        //     return {
+        //         options : [option]
+        //     }
+        // })
+
+        this.setState(() => ({
+            options : [option]
+        }))
+    }
+
+    handleAddOption = (option) => {
+        if(!option){
+            return 'Enter valid value to add item';
+        } else if(this.state.options.indexOf(option) > -1){
+            return 'This item already exists';
+        }
+
+        //console.log(option);
+        // this.setState((prevState) => {
+        //     //prevState.options.push(option);
+        //     return {
+        //         options : prevState.options.concat(option)
+        //     }
+        // })
+
+        this.setState((prevState) => ({
+            options : prevState.options.concat(option)
+        }))
+    }
+   
     //Stateless functional components do not have lifecycle methods
     //Lifecycle components
     // 1 - Mounting
@@ -69,62 +129,7 @@ export default class IndecisionApp extends React.Component {
         console.log('componentWillUnmount');
     }
 
-    handleDeleteOption(optionToRemove){
-        console.log('handleDeleteOption', optionToRemove);
-        this.setState((prevState) => ({
-            options : prevState.options.filter((option) => {
-                return optionToRemove !== option;
-            })
-        }))
-    }
 
-    handleDeleteOptions(){
-        // this.setState(() => {
-        //     return {
-        //         options : []
-        //     }
-        // })
-
-        this.setState(() => ({
-            options : []
-        }))
-    }
-
-    handlePick(){
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[randomNum];
-        //alert(option)
-        // this.setState(() => {
-        //     return {
-        //         options : [option]
-        //     }
-        // })
-
-        this.setState(() => ({
-            options : [option]
-        }))
-    }
-
-    handleAddOption(option){
-        if(!option){
-            return 'Enter valid value to add item';
-        } else if(this.state.options.indexOf(option) > -1){
-            return 'This item already exists';
-        }
-
-        //console.log(option);
-        // this.setState((prevState) => {
-        //     //prevState.options.push(option);
-        //     return {
-        //         options : prevState.options.concat(option)
-        //     }
-        // })
-
-        this.setState((prevState) => ({
-            options : prevState.options.concat(option)
-        }))
-    }
-   
     render() {
         //const title = "Indecision Application";
         const subtitle = "Put your life in the hands of a computer";
