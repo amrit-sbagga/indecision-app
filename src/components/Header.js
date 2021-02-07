@@ -6,9 +6,9 @@ const Header = (props) => {
 
     let subtitle = props.subtitle;
     return (
-        <div>
-            <h1>{title}</h1>
-            {subtitle && <h2>{subtitle}</h2>}
+        <div className="header">
+            <h1 className="header__title">{title}</h1>
+            {subtitle && <h2 className="header__subtitle">{subtitle}</h2>}
         </div>
     )
 };
