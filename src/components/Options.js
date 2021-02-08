@@ -5,9 +5,10 @@ const Options = (props) => {
     //console.log(props);
     //const options = props.options;
    // console.log(options.length);
-    {props.options.length === 0 && <p className="widget__message">Please add an option to get started</p>}
+    
     return (
-        <div>      
+        <div>
+            {props.options.length === 0 && <p className="widget__message">Please add an option to get started</p>}      
             <div className="widget-header">
                 <h3 className="widget-header__title">Your Options</h3>  
                 <button 
